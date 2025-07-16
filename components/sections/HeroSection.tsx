@@ -1,18 +1,55 @@
 import { Waves, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getCloudinaryVideoUrl } from "@/utils/cloudinary";
+import { useState, useEffect } from "react";
 
 export default function HeroSection() {
+  // Video state management
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Define video sources
+  const videoPublicId = "hero_video_itsjke";
+  const mobileFallbackImage = "/hero-mobile-fallback.jpg";
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Initial check
+    checkIfMobile();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkIfMobile);
+
+    // Clean up event listener
+    return () => window.removeEventListener("resize", checkIfMobile);
+  }, []);
+
+  // Generate Cloudinary video URL
+  const videoUrl = getCloudinaryVideoUrl(videoPublicId, {
+    quality: "auto",
+    format: "mp4",
+  });
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src="/hero_video.mp4" type="video/mp4" />
-      </video>
+      {/* Video background with loading state */}
+      <div className="absolute inset-0 w-full h-full bg-blue-900">
+        <video
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            videoLoaded ? "opacity-100" : "opacity-0"
+          }`}
+          autoPlay
+          muted
+          loop
+          playsInline
+          onLoadedData={() => setVideoLoaded(true)}
+        >
+          <source src={videoUrl} type="video/mp4" />
+        </video>
+      </div>
       <div className="absolute inset-0 bg-gradient-to-b from-blue-900/70 to-black/50"></div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 backdrop-blur-sm bg-black/10 rounded-xl sm:rounded-2xl py-6 sm:py-10 border border-white/10 shadow-xl">
