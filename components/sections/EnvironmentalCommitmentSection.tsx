@@ -70,7 +70,7 @@ export default function EnvironmentalCommitmentSection() {
               </div>
             </div>
           </div>
-          <div className="h-full min-h-screen bg-[url('/image1.jpg?height=1200&width=800')] bg-cover bg-center"></div>
+          <div className="hidden lg:block h-full min-h-screen bg-[url('/image1.jpg?height=1200&width=800')] bg-cover bg-center"></div>
         </div>
       </div>
     </section>

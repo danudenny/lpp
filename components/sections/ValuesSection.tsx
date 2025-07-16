@@ -6,7 +6,7 @@ export default function ValuesSection() {
     <section className="min-h-screen bg-gray-50">
       <div className="h-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 h-full min-h-screen">
-          <div className="h-full min-h-screen bg-[url('/service1.jpg?height=1200&width=800')] bg-cover bg-center"></div>
+          <div className="hidden lg:block h-full min-h-screen bg-[url('/service1.jpg?height=1200&width=800')] bg-cover bg-center"></div>
           <div className="flex items-center px-6 lg:px-12 py-12 lg:py-24">
             <div>
               <Badge className="bg-blue-100 text-blue-800 px-4 py-2 text-sm font-semibold mb-6">

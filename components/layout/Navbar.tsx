@@ -15,14 +15,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="bg-blue-600 p-2.5 rounded-lg">
-              <Ship className="h-7 w-7 text-white" />
+            <div className="bg-blue-600 p-2 sm:p-2.5 rounded-lg">
+              <Ship className="h-5 w-5 sm:h-7 sm:w-7 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">
-                PT. LINTAS PRIMA PERKASA
+              <h1 className="text-sm sm:text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">
+                PT. LPP
+                <span className="hidden md:inline"> - LINTAS PRIMA PERKASA</span>
               </h1>
-              <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
+              <p className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-medium">
                 One Stop Marine Transportation
               </p>
             </div>

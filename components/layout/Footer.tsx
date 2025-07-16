@@ -1,4 +1,4 @@
-import { Ship } from "lucide-react"
+import { Ship } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -11,13 +11,18 @@ export default function Footer() {
                 <Ship className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-black">PT. LINTAS PRIMA PERKASA</h3>
-                <p className="text-blue-400 font-medium">One Stop Marine Transportation</p>
+                <h3 className="text-2xl font-black">
+                  PT. LINTAS PRIMA PERKASA
+                </h3>
+                <p className="text-blue-400 font-medium">
+                  One Stop Marine Transportation
+                </p>
               </div>
             </div>
             <p className="text-gray-300 leading-relaxed text-lg mb-8">
-              Connecting Indonesia's 17,000+ islands through reliable maritime transportation services since 2007.
-              Your trusted partner for comprehensive maritime solutions.
+              Connecting Indonesia's 17,000+ islands through reliable maritime
+              transportation services since 2007. Your trusted partner for
+              comprehensive maritime solutions.
             </p>
           </div>
 
@@ -45,21 +50,13 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 mb-4 md:mb-0">&copy; 2024 PT. Lintas Prima Perkasa. All rights reserved.</p>
-            <div className="flex space-x-6 text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Terms of Service
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Safety Standards
-              </a>
-            </div>
+            <p className="text-gray-400 mb-4 md:mb-0">
+              &copy; {new Date().getFullYear()} PT. Lintas Prima Perkasa.
+            </p>
+            <p className="text-gray-400 mb-4 md:mb-0">All rights reserved.</p>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

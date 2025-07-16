@@ -1,8 +1,26 @@
 import { Ship, Truck, Globe, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ServicesSection() {
+  // State to track if device is mobile
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Check if device is mobile on component mount and window resize
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768); // 768px is typical md breakpoint
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Clean up event listener
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
   // Define services with images
   const services = [
     {
@@ -63,22 +81,23 @@ export default function ServicesSection() {
       </div>
 
       {/* Expandable Image Gallery */}
-      <div className="flex flex-col lg:flex-row h-[500px] mb-16 overflow-hidden">
+      <div className="flex flex-col lg:flex-row h-auto lg:h-[500px] mb-16 overflow-hidden">
         {services.map((service) => (
           <div
             key={service.id}
-            className="relative transition-all duration-500 ease-in-out overflow-hidden bg-cover bg-center h-full"
+            className="relative transition-all duration-500 ease-in-out overflow-hidden bg-cover bg-center h-[250px] lg:h-full"
             style={{
               backgroundImage: `url(${service.image})`,
-              width:
-                hoveredId === service.id
+              width: isMobile 
+                ? "100%" // Full width on mobile
+                : hoveredId === service.id
                   ? "40%"
                   : hoveredId === null
                   ? service.defaultWidth
                   : "20%",
             }}
-            onMouseEnter={() => setHoveredId(service.id)}
-            onMouseLeave={() => setHoveredId(null)}
+            onMouseEnter={() => !isMobile && setHoveredId(service.id)}
+            onMouseLeave={() => !isMobile && setHoveredId(null)}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-800/70 to-blue-700/50 flex flex-col justify-end p-8">
               <div className="mb-4">{service.icon}</div>
@@ -87,13 +106,13 @@ export default function ServicesSection() {
               </h3>
               <p
                 className="text-white/80 mb-4 transition-opacity duration-300"
-                style={{ opacity: hoveredId === service.id ? 1 : 0 }}
+                style={{ opacity: isMobile || hoveredId === service.id ? 1 : 0 }}
               >
                 {service.description}
               </p>
               <div
                 className="flex items-center transition-opacity duration-300"
-                style={{ opacity: hoveredId === service.id ? 1 : 0 }}
+                style={{ opacity: isMobile || hoveredId === service.id ? 1 : 0 }}
               >
                 <span className="text-white font-medium mr-2">Learn more</span>
                 <ArrowRight className="h-5 w-5 text-white" />
